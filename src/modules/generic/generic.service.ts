@@ -13,8 +13,8 @@ export class GenericService {
 
 			const repository = ds.getRepository(entity);
 
-			const item = repository.create(data);
-			await repository.save(item);
+			const item = repository.manager.create(data);
+			await repository.manager.save(item);
 
 			return {
 				message: `Usuário criado com sucesso.`,
@@ -92,7 +92,7 @@ export class GenericService {
 				);
 			}
 
-			repository.update(id, data);
+			repository.manager.update(entity,id, data);
 
 			return items;
 		} catch (error) {
@@ -121,7 +121,7 @@ export class GenericService {
 				);
 			}
 
-			repository.remove(item);
+			repository.manager.delete(entity, id);
 
 			return item;
 		} catch (error) {
